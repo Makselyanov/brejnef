@@ -1,30 +1,4 @@
-namename: Deploy static site to Pages
-on:
-  push:
-    branches: ["main"]
-permissions:
-  contents: read
-  pages write
-  id-token: write
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Extract site
-        run: unzip -o archive_2060_0836.zip -d site
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./site/public_html
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4: Deploy static site to Pages
+name: Deploy static site to Pages
 on:
   push:
     branches: ["main"]
@@ -44,7 +18,7 @@ jobs:
         run: unzip -o archive_2060_0836.zip -d site
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./site/archive_2060_0836/public_html
+          path: ./site/public_html
   deploy:
     needs: build
     runs-on: ubuntu-latest
